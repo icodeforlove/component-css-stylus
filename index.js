@@ -1,5 +1,6 @@
 var ccss = require('component-css'),
-	path = require('path');
+	path = require('path'),
+	_ = require('underscore');
 
 /**
  * Returns a wrapped stylus function that adds component-css support.
@@ -17,7 +18,10 @@ module.exports = function (config) {
 			stylus = stylus || this;
 
 			stylus.on('end', function(err, css){
-				return ccss(path.basename(stylus.options.filename, path.extname(stylus.options.filename)), css, config);
+				var options = _.clone(config);
+				options.name = path.basename(stylus.options.filename, path.extname(stylus.options.filename));
+				options.data = css;
+				return ccss(options);
 			});
 		};
 	};
