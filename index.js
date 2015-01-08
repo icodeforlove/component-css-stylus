@@ -1,4 +1,4 @@
-var ccss = require('component-css'),
+var ccss = require('node-component-css'),
 	path = require('path'),
 	_ = require('underscore');
 
